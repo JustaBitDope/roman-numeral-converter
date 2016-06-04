@@ -29,20 +29,15 @@ def get_number():
 
 
 def number_to_numeral(number):
-    value_list = [('M', 1000), 
-                  ('CM', 900), 
-                  ('D', 500), 
-                  ('CD', 400), 
-                  ('C', 100), 
-                  ('XC', 90), 
-                  ('L', 50), 
-                  ('XL', 40),
-                  ('X', 10), 
-                  ('IX', 9), 
-                  ('V', 5), 
-                  ('IV', 4), 
+    value_list = [('M', 1000), ('CM', 900), 
+                  ('D', 500), ('CD', 400), 
+                  ('C', 100), ('XC', 90), 
+                  ('L', 50), ('XL', 40),
+                  ('X', 10), ('IX', 9), 
+                  ('V', 5), ('IV', 4), 
                   ('I', 1)]
-    count_dict = {'M':0, 'CM':0, 'D':0, 'CD':0, 'C':0, 'XC':0, 'L':0, 'XL':0, 'X':0, 'IX':0, 'V':0, 'IV':0, 'I':0}
+    count_dict = {'M':0, 'CM':0, 'D':0, 'CD':0, 'C':0, 'XC':0, 
+                  'L':0, 'XL':0, 'X':0, 'IX':0, 'V':0, 'IV':0, 'I':0}
     for key, value in value_list:
         count_dict[key] = number // value
         number = number % value
@@ -79,10 +74,29 @@ def numeral_to_number(numeral):
     return number
 
 
+def check_input(text):
+    valid_chars = ['M','D','C','L','X','V','I']
+    
+    valid = True
+    if type(text) == str:
+        for letter in list(text):
+            if not letter in valid_chars:
+                valid = False
+    
+    else:
+        valid = False
+    return valid
+
+
 def main():
-    number = get_number()
-    numeral = number_to_numeral(number)
-    print("Your numeral is: " + numeral)
+    #number = get_number()
+    #numeral = number_to_numeral(number)
+    #print("Your numeral is: " + numeral)
+    print(check_input("hello"))
+    
+    
 
 #while True:
     #main()
+    
+main()
