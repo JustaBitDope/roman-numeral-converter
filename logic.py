@@ -74,7 +74,7 @@ def numeral_to_number(numeral):
     return number
 
 
-def check_input(text):
+def check_numeral_input(text):
     valid_chars = ['M','D','C','L','X','V','I']
     
     valid = True
@@ -88,15 +88,16 @@ def check_input(text):
     return valid
 
 
+def check_number_input(text):
+    #return type(number) == int
+    return text.isnumeric()
+    
 def main():
     #number = get_number()
     #numeral = number_to_numeral(number)
     #print("Your numeral is: " + numeral)
-    print(check_input("hello"))
-    
+    pass
     
 
 #while True:
     #main()
-    
-main()
