@@ -4,6 +4,7 @@
    Updated: 12th June 2014
    '''
 
+
 def get_number():
     not_receieved_number = True
     while not_receieved_number:
