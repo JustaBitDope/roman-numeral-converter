@@ -1,32 +1,8 @@
-'''Program for converting Arabic numbers to Roman Numerals
+"""Program for converting Arabic numbers to Roman Numerals
    Author: Peter J Scriven
    Started: 8th June 2014
    Updated: 12th June 2014
-   '''
-
-
-def get_number():
-    not_receieved_number = True
-    while not_receieved_number:
-        try:
-            number = int(input("\nPlease input your number: "))
-            not_receieved_number = False
-        except:
-            print("That is not a number")
-        else:    
-            if number > 100000000000000:
-                print("Okay, now this is just getting ridiculous.")
-                not_receieved_number = True
-            elif number > 1000000000:
-                print("Seriously, if I let you do this your computer would take like a minute just to calculate it.")
-                not_receieved_number = True
-            elif number > 100000000:
-                print("Nope. Numerals for numbers over 100 million just get stupidly big.")
-                not_receieved_number = True
-            elif number > 100000:
-                print("Your numeral would contain {} M's".format(number // 1000))
-                not_receieved_number = True
-    return number
+   """
 
 
 def number_to_numeral(number):
@@ -37,8 +13,8 @@ def number_to_numeral(number):
                   ('X', 10), ('IX', 9), 
                   ('V', 5), ('IV', 4), 
                   ('I', 1)]
-    count_dict = {'M':0, 'CM':0, 'D':0, 'CD':0, 'C':0, 'XC':0, 
-                  'L':0, 'XL':0, 'X':0, 'IX':0, 'V':0, 'IV':0, 'I':0}
+    count_dict = {'M': 0, 'CM': 0, 'D': 0, 'CD': 0, 'C': 0, 'XC': 0,
+                  'L': 0, 'XL': 0, 'X': 0, 'IX': 0, 'V': 0, 'IV': 0, 'I': 0}
     for key, value in value_list:
         count_dict[key] = number // value
         number = number % value
@@ -54,13 +30,13 @@ def number_to_numeral(number):
 
 
 def numeral_to_number(numeral):
-    value_dict = {'M':1000, 
-                  'D':500, 
-                  'C':100, 
-                  'L':50, 
-                  'X':10, 
-                  'V':5, 
-                  'I':1}        
+    value_dict = {'M': 1000,
+                  'D': 500,
+                  'C': 100,
+                  'L': 50,
+                  'X': 10,
+                  'V': 5,
+                  'I': 1}
     letter_list = list(numeral)
     letter_list.reverse()
     number = 0
@@ -75,13 +51,14 @@ def numeral_to_number(numeral):
     return number
 
 
-def check_numeral_input(text):
-    valid_chars = ['M','D','C','L','X','V','I']
+def is_valid_numeral(text):
+    valid_chars = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
     
     valid = True
     if type(text) == str:
         for letter in list(text):
-            if not letter in valid_chars:
+            if letter not in valid_chars:
+                # print(letter)
                 valid = False
     
     else:
@@ -89,16 +66,39 @@ def check_numeral_input(text):
     return valid
 
 
-def check_number_input(text):
-    #return type(number) == int
+def is_valid_number(text):
     return text.isnumeric()
-    
-def main():
-    #number = get_number()
-    #numeral = number_to_numeral(number)
-    #print("Your numeral is: " + numeral)
-    pass
-    
 
-#while True:
-    #main()
+
+# ---- If you just want to use this is the python shell ----
+TEXT_MODE = False
+
+
+def get_number():
+    not_received_number = True
+    while not_received_number:
+        try:
+            num = int(input("\nPlease input your number: "))
+            not_received_number = False
+        except:
+            print("That is not a number")
+        else:
+            if num > 100000000000000:
+                print("Okay, now this is just getting ridiculous.")
+                not_received_number = True
+            elif num > 1000000000:
+                print("Seriously, if I let you do this your computer would take like a minute just to calculate it.")
+                not_received_number = True
+            elif num > 100000000:
+                print("Nope. Numerals for numbers over 100 million just get stupidly big.")
+                not_received_number = True
+            elif num > 100000:
+                print("Your numeral would contain {} M's".format(number // 1000))
+                not_received_number = True
+    return num
+
+
+while TEXT_MODE:
+    number = get_number()
+    numeral = number_to_numeral(number)
+    print("Your numeral is: " + numeral)
