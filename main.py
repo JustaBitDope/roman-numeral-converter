@@ -4,6 +4,7 @@
    Updated: 11th July 2016
    """
 
+import os
 import logic
 import tkinter as tk
 import tkinter.ttk as ttk
@@ -19,10 +20,16 @@ class NumeralConverterGUI(object):
         # Window Settings
         root.minsize(310, 200)
         root.title("Roman Numeral Converter")
-        root.iconbitmap("icon.ico")
         root.bind('<Return>', self.convert)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
+
+        # Icon
+        if os.name == "nt":
+            root.iconbitmap("./res/icon.ico")
+        else:
+            img = tk.PhotoImage(file='./res/icon.png')
+            root.tk.call('wm', 'iconphoto', root._w, img)
         
         # Mainframe
         self.main = tk.Frame(self.root)
@@ -113,6 +120,6 @@ class NumeralConverterGUI(object):
 
 
 window = tk.Tk()
-ARROWS = tk.PhotoImage(file="switch.png").subsample(2, 2)
+ARROWS = tk.PhotoImage(file="./res/switch.png").subsample(2, 2)
 NumeralConverterGUI(window)
 window.mainloop()
